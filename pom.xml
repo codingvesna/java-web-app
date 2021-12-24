@@ -78,7 +78,22 @@
           <artifactId>sonar-maven-plugin</artifactId>
           <version>3.9.0.2155</version>
        </plugin>
-        
+	   
+	  
+        <plugin>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.8-SNAPSHOT</version>
+
+			<reportSets>
+			  <reportSet>
+				<reports>
+				  <!-- select non-aggregate reports -->
+				  <report>report</report>
+				</reports>
+			  </reportSet>
+			</reportSets>
+      </plugin>
         
       </plugins>
     </pluginManagement>
