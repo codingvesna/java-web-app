@@ -18,12 +18,8 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 	<!-- Sonar -->
-	<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-	<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-    <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
-	<sonar.language>java</sonar.language>
-
-    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> 
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
 
   <dependencies>
@@ -88,29 +84,24 @@
 	   
 	  
         <plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.8-SNAPSHOT</version>
-			<configuration>
-				<destFile>${sonar.jacoco.reportPath}</destFile>
-				<append>true</append>
-			</configuration>
-			<executions>
-			  <execution>
-				<id>prepare-agent</id>
-				<goals>
-				 <goal>prepare-agent</goal>
-				</goals>
-			  </execution>
-			  <execution>
-				<id>report</id>
-				<phase>package</phase>
-				<goals>
-				 <goal>report</goal>
-				</goals>
-			  </execution>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
             </executions>
-      </plugin>
+        </plugin>
         
       </plugins>
     </pluginManagement>
