@@ -53,11 +53,6 @@
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>3.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
             <version>3.2.0</version>
         </dependency>
@@ -71,8 +66,6 @@
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
                 </plugin>
-                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
@@ -104,27 +97,14 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-
-                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.7</version>
-                    <!--          <configuration>-->
-                    <!--            <destFile>${sonar.jacoco.reportPath}</destFile>-->
-                    <!--            <append>true</append>-->
-                    <!--          </configuration>-->
                     <executions>
                         <execution>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
-                            <configuration>
-                                <destFile>${project.basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-                            </configuration>
                         </execution>
                         <execution>
                             <id>report</id>
@@ -132,9 +112,6 @@
                             <goals>
                                 <goal>report</goal>
                             </goals>
-                            <configuration>
-                                <dataFile>${project.basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
