@@ -8,8 +8,12 @@
     <artifactId>java-web-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
-
+    <developers>
+        <developer>
+            <id>vesna</id>
+            <name>Vesna Milovanovic</name>
+        </developer>
+    </developers>
     <name>java-web-app Maven Webapp</name>
     <url>http://www.example.com</url>
 
@@ -17,44 +21,82 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <surefireArgLine> </surefireArgLine>
         <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target><sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <!--    <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>-->
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <!-- Sonar Properties -->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <!-- Dependencies Versions -->
+        <junit.version>4.11</junit.version>
+        <jwebunit.version>3.3</jwebunit.version>
+        <jacoco.version>0.8.7</jacoco.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.site.version>3.10.0</maven.site.version>
+        <maven.resources.version>3.2.0</maven.resources.version>
     </properties>
+
+    <!--    Dependencies Management -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.jwebunit</groupId>
+                <artifactId>jwebunit-htmlunit-plugin</artifactId>
+                <version>${jwebunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven.site.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.jwebunit</groupId>
             <artifactId>jwebunit-htmlunit-plugin</artifactId>
-            <version>3.3</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.21</version>
         </dependency>
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.7</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
-            <version>3.2.0</version>
         </dependency>
     </dependencies>
 
@@ -102,13 +144,14 @@
                     <version>0.8.7</version>
                     <executions>
                         <execution>
+                            <id>jacoco-init</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
                             <id>report</id>
-                            <phase>prepare-package</phase>
+                            <phase>test</phase>
                             <goals>
                                 <goal>report</goal>
                             </goals>
@@ -138,6 +181,7 @@
                         </execution>
                     </executions>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
