@@ -32,25 +32,25 @@
 - Using `JaCoCo` Plugin for code coverage analysis in Java, allows basic report creation.
 
 ```
-				<plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.7</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+<plugin>
+   <groupId>org.jacoco</groupId>
+   <artifactId>jacoco-maven-plugin</artifactId>
+   <version>0.8.7</version>
+   <executions>
+      <execution>
+          <goals>
+              <goal>prepare-agent</goal>
+          </goals>
+      </execution>
+      <execution>
+          <id>report</id>
+          <phase>prepare-package</phase>
+          <goals>
+               <goal>report</goal>
+          </goals>
+       </execution>
+   </executions>
+</plugin>
 ```
 In this case, The JaCoCo Maven plug-in defines the following goals:
 1. prepare-agent - initialization phase, to add JaCoCo agent during build
@@ -90,26 +90,26 @@ In this case, The JaCoCo Maven plug-in defines the following goals:
 
 **Solution**  Copy resources. Bad approach?? Probably
  ```
-				<plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.2.0</version>
-                    <executions>
-                        <execution>
-                            <id>copy-resources</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${basedir}/target/classes</outputDirectory>
-                                <resources>
-                                    <resource>
-                                        <directory>${basedir}/target/test-classes</directory>
-                                        <filtering>false</filtering>
-                                    </resource>
-                                </resources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+<plugin>
+   <artifactId>maven-resources-plugin</artifactId>
+   <version>3.2.0</version>
+   <executions>
+      <execution>
+        <id>copy-resources</id>
+        <phase>pre-integration-test</phase>
+        <goals>
+            <goal>copy-resources</goal>
+        </goals>
+        <configuration>
+            <outputDirectory>${basedir}/target/classes</outputDirectory>
+            <resources>
+               <resource>
+                  <directory>${basedir}/target/test-classes</directory>
+                  <filtering>false</filtering>
+               </resource>
+             </resources>
+          </configuration>
+       </execution>
+   </executions>
+</plugin>
 ```
